@@ -1,5 +1,6 @@
 from board import create_board, print_board, valid_moves, play_move, ROWS, COLS, N_ALIGN, PLAYER, OPPONENT
 from ia import IA_Decision, Terminal_Test, check_win
+import time
 
 def human_vs_ia():
     board = create_board()
@@ -36,9 +37,12 @@ def ia_vs_ia():
     print_board(board)
     turn = PLAYER
     while not Terminal_Test(board):
+        start = time.time()
         col = IA_Decision(board)
+        elapsed = time.time() - start
         play_move(board, col, turn)
         print(f"Joueur {'IA1' if turn==PLAYER else 'IA2'} joue colonne {col}")
+        print(f"Temps de décision : {elapsed:.3f} secondes")
         print_board(board)
         turn *= -1
     if check_win(board, PLAYER):
