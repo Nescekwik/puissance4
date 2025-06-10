@@ -9,8 +9,11 @@ def human_vs_ia():
     while not Terminal_Test(board):
         if turn == PLAYER:
             print("\nTour de l'IA...")
+            import time
+            t0 = time.time()
             col = IA_Decision(board)
-            print(f"L'IA joue la colonne {col}")
+            elapsed = time.time() - t0
+            print(f"L'IA joue la colonne {col} (temps: {elapsed:.2f}s)")
         else:
             print("\nVotre tour.")
             valid = valid_moves(board)
@@ -36,9 +39,12 @@ def ia_vs_ia():
     print_board(board)
     turn = PLAYER
     while not Terminal_Test(board):
+        import time
+        t0 = time.time()
         col = IA_Decision(board)
+        elapsed = time.time() - t0
         play_move(board, col, turn)
-        print(f"Joueur {'IA1' if turn==PLAYER else 'IA2'} joue colonne {col}")
+        print(f"Joueur {'IA1' if turn==PLAYER else 'IA2'} joue colonne {col} (temps: {elapsed:.2f}s)")
         print_board(board)
         turn *= -1
     if check_win(board, PLAYER):

@@ -7,7 +7,12 @@ def simulate_games(n=10):
         board = create_board()
         turn = PLAYER
         while not Terminal_Test(board):
+            import time
+            t0 = time.time()
             col = IA_Decision(board)
+            elapsed = time.time() - t0
+            if elapsed > 10:
+                print(f"Attention: IA a dépassé 10s ({elapsed:.2f}s) pour un coup !")
             play_move(board, col, turn)
             turn *= -1
         if check_win(board, PLAYER):
