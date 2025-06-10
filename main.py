@@ -1,5 +1,6 @@
 from board import create_board, print_board, valid_moves, play_move, ROWS, COLS, N_ALIGN, PLAYER, OPPONENT
 from ia import IA_Decision, Terminal_Test, check_win
+import time
 
 def human_vs_ia():
     board = create_board()
